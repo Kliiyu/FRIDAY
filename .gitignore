@@ -1,0 +1,38 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore environment variable files
+.env
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+out/
+
+# Ignore compiled files
+*.class
+*.o
+*.so
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+.venv/
+
+# Ignore JavaScript map files
+*.map
+
+# Ignore package lock files
+package-lock.json
+yarn.lock
