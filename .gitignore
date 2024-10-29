@@ -17,6 +17,7 @@ Thumbs.db
 
 # Ignore IDE specific files
 .vscode/
+.vs/
 .idea/
 out/
 

@@ -1,19 +1,58 @@
 from vosk import Model, KaldiRecognizer
-import PyAudio
+import sounddevice as sd
+import sys
+import os
+import queue
+import json
+import subprocess
 
-MODEL = Model(r"./models/vosk-model-small-en-us-0.15/") 
-RECOGNIZER = KaldiRecognizer(MODEL, 16000)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from src.logging.output import output
 
-CAP = PyAudio.PyAudio()
-STREAM = CAP.open(format=PyAudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8192)
-STREAM.start_stream()
+q = queue.Queue()
 
-while True:
-    data = STREAM.read(4096)
-    if len(data) == 0:
-        break
+def callback(indata, frames, time, status):
+    """This is called (from a separate thread) for each audio block."""
+    if status:
+        print(status, file=sys.stderr)
+    q.put(bytes(indata))
 
-    if RECOGNIZER.AcceptWaveform(data):
-        print(RECOGNIZER.Result())
-    else:
-        print(RECOGNIZER.PartialResult())
+model = Model(r"./src/input/models/vosk-model-small-en-us-0.15")
+
+samplerate = 16000
+blocksize = 8192
+device = None # Default input device
+
+try:
+    device_info = sd.query_devices(sd.default.device, "input") if device is None else device
+    output(f"Using \"{device_info['name']}\" as input device")
+    output(f"Using {samplerate} as samplerate")
+    
+    with sd.RawInputStream(samplerate=samplerate, blocksize=blocksize, device=device,
+            dtype="int16", channels=1, callback=callback):
+
+        rec = KaldiRecognizer(model, samplerate)
+        while True:
+            data = q.get()
+            if rec.AcceptWaveform(data):
+                result = rec.Result()
+                result_dict = json.loads(result)
+                final_text = result_dict['text']
+                
+                if final_text == "exit":
+                    output("Exiting...")
+                    break
+                
+                output(f"Final Result: {final_text}")
+                
+                # subprocess.run(["python", "./src/input/other.py", final_text])
+            else:
+                partial_result = rec.PartialResult()
+
+except KeyboardInterrupt:
+    print("\nExiting...")
+    exit()
+    
+except Exception as e:
+    print(e)
+    

@@ -1,2 +1,5 @@
 vosk
-PyAudio
+sounddevice
+numpy
+pyfiglet
+rich
