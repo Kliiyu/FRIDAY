@@ -28,14 +28,13 @@ class Friday():
     def prompt(self, packet: Packet, verbose: bool = False) -> str:
         log_output.output("Prompting FRIDAY", verbose=verbose)
 
-        if ("nuke" or "nook") in packet.text:
+        if packet.text in ["nuke", "nook", "anuc", "anuc7777"]:
             webbrowser.open("https://www.youtube.com/watch?v=tQhs5pAhsOg")
-        if ("cat" or "negro" or "neikro" or "necro") in packet.text:
-            response = requests.get('https://api.waifu.pics/nsfw/neko')
-            log_output.output("jere")
+        if "girl" in packet.text:
+            response = requests.get('https://api.waifu.pics/nsfw/waifu')
             if response.status_code == 200:
                 data = response.json()
-                webbrowser.open(data.url)
+                webbrowser.open(data["url"])
             else:
                 print('Request failed with status code:', response.status_code)
 

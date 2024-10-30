@@ -87,6 +87,8 @@ def main():
 
             except Exception as e:
                 log_output.output(e, verbose=verbose, output_type=log_output.OutputType.ERROR)
+        else:
+            log_output.output("Emtpy packet", verbose=verbose)
 
 if __name__ == "__main__":
     main()

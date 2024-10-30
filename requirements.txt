@@ -5,4 +5,8 @@ pyfiglet
 rich
 ollama
 pyttsx3
-soundfile
+langchain
+beautifulsoup4
+chromadb
+langchain_community
+langchain_ollama
