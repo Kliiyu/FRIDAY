@@ -1,0 +1,4 @@
+Model: "Mistral"
+Verbose: True
+TextToSpeech: True
+SpeechToText: False

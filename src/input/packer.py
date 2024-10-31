@@ -9,10 +9,12 @@ from enum import Enum
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 import src.logging.output as log_output
 
-verbose = True
 venv_python_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../.venv/Scripts/python.exe'))
 speech_recognition_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'speech_recognition.py'))
 base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../base/main.py'))
+
+verbose = True
+STT = False
 
 class Emotion(Enum):
     HAPPY = "happy"
@@ -45,8 +47,11 @@ class Packet:
     
     def generate(self) -> 'Packet':
         try:
-            output = subprocess.run([venv_python_path, speech_recognition_path], capture_output=True)
-            self.text = output.stdout.decode('utf-8').strip()
+            if STT:
+                output = subprocess.run([venv_python_path, speech_recognition_path], capture_output=True)
+                self.text = output.stdout.decode('utf-8').strip()
+            else: 
+                self.text = log_output.inp("You >> ")
 
             log_output.output(f"Packet generated", verbose=verbose)
             return self
