@@ -2,6 +2,7 @@ import subprocess
 import os
 import sys
 import json
+import yaml
 import random
 from datetime import datetime
 from enum import Enum
@@ -11,10 +12,12 @@ import src.logging.output as log_output
 
 venv_python_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../.venv/Scripts/python.exe'))
 speech_recognition_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'speech_recognition.py'))
-base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../base/main.py'))
+base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../base/base.py'))
 
-verbose = True
-STT = False
+with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../settings/config.yml')), 'r') as config_file:
+    config = yaml.safe_load(config_file)
+    verbose = config.get('Verbose', False)
+    STT = config.get('SpeechToText', False)
 
 class Emotion(Enum):
     HAPPY = "happy"

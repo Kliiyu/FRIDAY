@@ -1,9 +1,9 @@
 import ollama
 from langchain_community.document_loaders import WebBaseLoader
 
-from retriver import Retriver
+from retriver import Retriever
 
-tucker = Retriver(name="Tucker", type="Golden")
+tucker = Retriever(name="Tucker", type="Golden")
 
 loader = WebBaseLoader(
     web_paths=("https://en.wikipedia.org/wiki/Europa_Clipper",),

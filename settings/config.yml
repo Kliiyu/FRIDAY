@@ -1,4 +1,6 @@
-Model: "Mistral"
-Verbose: True
+TextResponseModel: "mistral"
+RAGEmbeddingModel: "mistral"
+Verbose: False
 TextToSpeech: True
 SpeechToText: False
+NoAITesting: True
