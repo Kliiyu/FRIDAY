@@ -10,3 +10,4 @@ beautifulsoup4
 chromadb
 langchain_community
 langchain_ollama
+flask
