@@ -13,6 +13,8 @@ FRIDAY isn't just another assistant; it's my own experiment with technology, com
 
 ### Installation Steps
 
+> **Important Note:** The following installation steps are outdated and may not work with the latest version of FRIDAY. Please refer to the [official documentation](https://kliiyu.github.io/FRIDAY/) for the most up-to-date instructions.
+
 1. Ensure you have [Ollama](https://ollama.com) and [Python](https://www.python.org) installed on your system.
 2. Clone the repository:
    ```sh

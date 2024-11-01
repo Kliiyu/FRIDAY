@@ -2,4 +2,16 @@ services:
   web:
     build: ./src/website/
     ports:
-      - "6672:5000"
+      - "6672:5000" # 6972 hex for fr
+  main:
+    build: ./src/main/
+    ports:
+      - "6964:6964" # 6964 hex for id
+  db:
+    image: postgres:9.6
+    ports:
+      - "6179:5432" # 6979 hex for ay
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres

@@ -1,18 +1,15 @@
 from langchain_community.vectorstores import Chroma
 from langchain_ollama import OllamaEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-import os
-import yaml
-
-with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../settings/config.yml')), 'r') as config_file:
-    config = yaml.safe_load(config_file)
-    RAGEmbeddingModel = config.get('RAGEmbeddingModel', 'mistral')
 
 class Retriever():
-    def __init__(self, name: str = "Tucker", type: str = "Golden") -> None:
-        self.name = name
-        self.type = type + " retriever"
+    def __init__(self, RAGEmbeddingModel: str = 'mistral', **kwargs) -> None:
+        self.RAGEmbeddingModel: str = RAGEmbeddingModel
         self.retriever = None
+        
+        #! Not important just for the joke
+        self.name = kwargs.get('name', "Tucker")
+        self.type = kwargs.get('type', "Golden") + " Retriever"
     
     def __str__(self) -> str:
         return str(self.name)
@@ -21,7 +18,7 @@ class Retriever():
         return str(self.type)
     
     def hide(self, splits) -> None:
-        embeddings = OllamaEmbeddings(model=RAGEmbeddingModel)
+        embeddings = OllamaEmbeddings(model=self.RAGEmbeddingModel)
         vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
         self.retriever = vectorstore.as_retriever()
     

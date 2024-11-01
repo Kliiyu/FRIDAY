@@ -1,6 +1,19 @@
+# Whether or not to use a wake word
+WakeWord: True
+
+# Models to use for the AI
 TextResponseModel: "mistral"
 RAGEmbeddingModel: "mistral"
-Verbose: False
+
+# Printing output to console
+Verbose: True
+
+# Read output using text-to-speech
 TextToSpeech: True
-SpeechToText: False
-NoAITesting: True
+
+# Read input using speech-to-text
+SpeechToText: True
+STTModelPath: "D:\\Current\\FRIDAY\\src\\main\\input\\models\\vosk-model-small-en-us-0.15"
+
+# Turn off AI for testing (just says what you said)
+Testing: False

@@ -1,0 +1,11 @@
+vosk
+sounddevice
+numpy
+pyfiglet
+rich
+ollama
+pyttsx3
+langchain
+chromadb
+langchain_community
+langchain_ollama
