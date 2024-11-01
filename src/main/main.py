@@ -2,7 +2,7 @@ import time
 import yaml
 
 import output as log
-import simpleaudio as sa
+#import simpleaudio as sa
 
 import base.base as base
 import input.packer as packer
@@ -42,13 +42,15 @@ def main():
                 prompt = packet.text
                 if prompt.lower() == "friday":
                     wakeWordSwitch = True
+                    """ 
                     try:
                         wave_obj = sa.WaveObject.from_wave_file("D:\\Current\\FRIDAY\\src\\main\\active-beep.wav")
                         wave_obj.play()
                     except FileNotFoundError:
                         log.output("Audio file not found. Please ensure the file exists to use wake word functionality", output_type=log.OutputType.WARNING, verbose=verbose)
                     except ImportError:
-                        log.output("simpleaudio module not found. Please install simpleaudio to use wake word functionality", output_type=log.OutputType.WARNING, verbose=verbose)
+                        log.output("simpleaudio module not found. Please install simpleaudio to use wake word functionality", output_type=log.OutputType.WARNING, verbose=verbose) 
+                    """
                     break
                 elif "exit" in prompt.lower():
                     log.output("Exiting...", output_type=log.OutputType.DEBUG, verbose=verbose)
