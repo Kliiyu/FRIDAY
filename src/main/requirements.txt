@@ -9,3 +9,4 @@ langchain
 chromadb
 langchain_community
 langchain_ollama
+beautifulsoup4

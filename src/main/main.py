@@ -9,10 +9,11 @@ import input.packer as packer
 import out.tts as tts
 
 python_path = r"./.venv/Scripts/python.exe"
+config_path = r"./settings/config.yml"
 
 def main():
     
-    with open("settings\config.yml", "r") as file:
+    with open(config_path, "r") as file:
         config = yaml.safe_load(file)
         wakeWord = config.get('WakeWord', False)
         textResponseModel = config.get('TextResponseModel', "mistral")
