@@ -1,4 +1,4 @@
-# FRIDAY
+# FRIDAY (NOW FREYA [https://github.com/kliiyu-freya](https://github.com/kliiyu-freya))
 # Getting started
 
 Welcome to the FRIDAY project! For more details and a step by step install guide, visit our [documentation](https://kliiyu.github.io/FRIDAY/).
